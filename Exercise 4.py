@@ -25,21 +25,22 @@ ws = wb.active
 
 # Define home screen, the user is redirected to this in case of an error.
 def home_screen():
-    print("Please select if you want to create an account or log in.")
-    print("(1): Create an account.""\n" "(2): Log in.""\n" "(3): Show Usernames.""\n" 
-          "(4): Show Passwords.""\n" "(5): Exit.")
-    print("\n")
-    selection = int(input("Please enter your selection: "))
-    if selection == 1:
-        create_account()
-    elif selection == 2:
-        log_in()
-    elif selection == 3:
-        print(usernames)
-    elif selection == 4:
-        print(passwords)
-    elif selection == 5:
-        exit()
+    while True:
+        print("Please select one of the options beneath.")
+        print("(1): Create an account.""\n" "(2): Log in.""\n" "(3): Show Usernames.""\n" 
+              "(4): Show Passwords.""\n" "(5): Exit.")
+        print("\n")
+        selection = int(input("Please enter your selection: "))
+        if selection == 1:
+            create_account()
+        elif selection == 2:
+            log_in()
+        elif selection == 3:
+            print(usernames)
+        elif selection == 4:
+            print(passwords)
+        elif selection == 5:
+            exit()
 
 
 usernames = []
@@ -63,17 +64,21 @@ def create_account():
     for password in passwords:
         ws.cell(row=1, column=2, value=password)
     wb.save(wb_path)
-    log_in()
+    home_screen()
 
 
 def log_in():
     print("Let's log in, please enter your data beneath""\n")
-    username = ("\n" + input("Please enter your username: "))
-    password = ("\n" + input("Please enter your password: "))
-    if username == ws.values([usernames]) and password == ws.values([passwords]):
+    a = ("\n" + input("Please enter your username: "))
+    b  = ("\n" + input("Please enter your password: "))
+    if ws.values([usernames]) == a and ws.values(passwords) == b:
         print("You have successfully logged in")
         home_screen()
 
+    # for i in range(1, ws.max_row):
+# if ws.cell(row=row, column=0).value == username:
+# for j in range(i, ws.max_column):
+# print(ws.cell(row=i, column=j).value)
 
 
 # creating usernames and password lists.
