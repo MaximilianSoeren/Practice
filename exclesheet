@@ -2,6 +2,7 @@
 import openpyxl
 from os import path
 
+
 # check if workbook has been created, if so just load it do not make another one
 def load_workbook(wb_path):
     if path.exists(wb_path):
@@ -32,7 +33,10 @@ else:
 passwords.append(password)
 
 for username in usernames:
-    sheet.append(username)
+    sheet.append([username])
+
+for password in passwords:
+    sheet.append([passwords])
 
 # for username in "Username":
 #     sheet.cell(row=1, column=1, value=username)
