@@ -1,34 +1,43 @@
+# import all our modules
 import openpyxl
 from os import path
 
-
+# check if workbook has been created, if so just load it do not make another one
 def load_workbook(wb_path):
     if path.exists(wb_path):
         return openpyxl.load_workbook(wb_path)
     return openpyxl.Workbook()
 
 
+# defining of variables
 wb_path = "userdata.xlsx"
 wb = load_workbook(wb_path)
 
 sheet = wb["userdata"]
 
-if sheet.cell (row=1, column=1, value=Username) = True:
-    exit()
+# creating usernames and password lists.
+usernames = []
+passwords = []
+
+# getting input from the user to put into the lists
+username = input("Please enter a username: ")
+password = input("Please enter a password: ")
+
+# checking if username is already taken, if not then append it to username list.
+if username in usernames:
+    print("This username is already taken")
 else:
-    sheet.insert_rows(1)
-    for title in "Username":
-        sheet.cell(row=1, column=1, value=title)
+    usernames.append(username)
+# appending passwords to the list
+passwords.append(password)
 
-usernames = (1, 2, 3)
-
-sheet.append(usernames)
+for username in usernames:
+    sheet.append(username)
 
 # for username in "Username":
 #     sheet.cell(row=1, column=1, value=username)
 
-
-# for username in usernames:
-#     sheet.append(username)
-
+print(usernames)
+print(passwords)
+# saving the workbook so all information is stored.
 wb.save(wb_path)
