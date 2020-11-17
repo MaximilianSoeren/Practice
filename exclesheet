@@ -29,6 +29,7 @@ if username in usernames:
     print("This username is already taken")
 else:
     usernames.append(username)
+
 # appending passwords to the list
 passwords.append(password)
 
@@ -36,12 +37,14 @@ for username in usernames:
     sheet.append([username])
 
 for password in passwords:
-    sheet.append([passwords])
+    sheet.cell(sheet.max_row, column=2, value=password)
 
 # for username in "Username":
 #     sheet.cell(row=1, column=1, value=username)
+# print both username and password list to see if it worked.
 
 print(usernames)
 print(passwords)
+
 # saving the workbook so all information is stored.
 wb.save(wb_path)
