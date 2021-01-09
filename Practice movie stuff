@@ -1,10 +1,11 @@
 # Incomplete app!
 
-MENU_PROMPT = "\nEnter 'a' to add a movie, 'l' to see your movies, 'f' to find a movie by title, or 'q' to quit: "
+MENU_PROMPT = "\nEnter 'a' to add a movie, 'l' to see your movies, 'f' to find a movie, or 'q' to quit: "
 movies = []
 
 
 # You may want to create a function for this code
+# add movies -----------------------------------------------------------------------------------
 def add_movie():
     title = input("Enter the movie title: ")
     director = input("Enter the movie director: ")
@@ -15,42 +16,58 @@ def add_movie():
         'director': director,
         'year': year
     })
-    search_movie_title()
+
 
 # Create other functions for:
-#   - listing movies
+#   - listing movies # -------------------------------------------------------------------------------------------
+
+
 def list_movies():
     print(movies)
-  - finding movies
+
+
+# - finding movies ----------------------------------------------------------------------------------------------------
+
+
 def search_option():
     user_input = input("Please enter if you wanna search by title, director or year: ")
     if user_input.lower() == "title":
         search_movie_title()
     elif user_input.lower() == "director":
         search_movie_director()
-    elif user_input.lower() == "year":\
+    elif user_input.lower() == "year":
         search_movie_year()
     else:
         print("You have not entered a valid search option.")
         print("Bringing you back to the home screen.")
-        selection()
+        home_screen()
 
 
 def search_movie_title():
     user_input = input('Please enter the title you want to search for: ')
-    if user_input == movie["title"]:
-        print(movie)
+    for movie in movies:
+        if user_input == movie["title"]:
+            print(movie)
 
 
 def search_movie_director():
     user_input = input('Please enter the director you want to search for: ')
+    for movie in movies:
+        if user_input == movie["director"]:
+            print(movie)
 
 
 def search_movie_year():
     user_input = input('Please enter the release year you want to search for: ')
+    for movie in movies:
+        if user_input == movie["year"]:
+            print(movie)
 # And another function here for the user menu
 
-def selection():
+# -------------------------------------------------------------------------------------------------------------
+
+
+def home_screen():
 
     selection = input(MENU_PROMPT)
     while selection != 'q':
@@ -59,7 +76,7 @@ def selection():
         elif selection == "l":
             list_movies()
         elif selection == "f":
-            pass
+            search_option()
         else:
             print('Unknown command. Please try again.')
 
@@ -67,4 +84,4 @@ def selection():
 
 
 # Remember to run the user menu function at the end!
-add_movie()
+home_screen()
